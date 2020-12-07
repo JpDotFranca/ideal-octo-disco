@@ -75,4 +75,47 @@ public class ChromeTest {
                 "Computer software"));
     }
 
+    @Test
+    public void testCadastro1() {
+       
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+        driver.get("https://testmoz.com/build");
+        
+        By searchInput = By.id("id_name");
+        wait.until(presenceOfElementLocated(searchInput));
+        driver.findElement(searchInput).sendKeys("Teste de teste 1");
+
+        By inputPassword = By.id("id_password");
+        wait.until(presenceOfElementLocated(inputPassword));
+        driver.findElement(inputPassword).sendKeys("senhateste1");
+
+        By inputPassword2 = By.id("id_confirm_password");
+        wait.until(presenceOfElementLocated(inputPassword2));
+        driver.findElement(inputPassword2).sendKeys("senhateste1");
+
+        wait.until(textToBePresentInElementLocated(By.tagName("button"),
+                "Create Test"));
+    }
+
+    @Test
+    public void testCadastro2() {
+       
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        driver.get("https://admin.typeform.com/signup");
+        
+        By searchInput = By.id("email");
+        wait.until(presenceOfElementLocated(searchInput));
+        driver.findElement(searchInput).sendKeys("email@teste.com.br");
+
+        By inputPassword = By.id("password");
+        wait.until(presenceOfElementLocated(inputPassword));
+        driver.findElement(inputPassword).sendKeys("senhateste1");
+
+        driver.findElement(By.id("terms")).click();
+        driver.findElement(By.id("consents")).click();
+       
+        wait.until(textToBePresentInElementLocated(By.tagName("button"),
+                "Create my free account"));
+    }
+
 }
